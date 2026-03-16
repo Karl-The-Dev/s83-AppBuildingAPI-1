@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const cors = require("cors");
 
-const port = 4000;
+require("dotenv").config();
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 //MongoDB database
-mongoose.connect("mongodb+srv://admin:admin@cluster0.bqcrmbd.mongodb.net/fitness-tracker-API?appName=Cluster0");
+mongoose.connect(process.env.MONGODB_STRING);
 mongoose.connection.once('open', () => console.log('Now connected to MongoDB Atlas.'));
 
 

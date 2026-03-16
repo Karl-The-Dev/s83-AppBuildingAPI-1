@@ -6,6 +6,11 @@ const {errorHandler } = require("../auth");
 
 
 module.exports.registerUser = async (req, res) => {
+
+    const duplicateEmail = await User.findOne({ email: req.body.email });
+        if (duplicateEmail) {
+            return res.status(409).send("Duplicate Email Found!");
+        }
  
     try {
 
